@@ -64,7 +64,7 @@
 							<label for="birth" class="form-label">생일</label>
 						</td>
 						<td>
-							<input type="date" name="birth" id="birth" class="form-control" min="1903-01-02" required>
+							<input type="date" name="birth" id="birth" class="form-control" min="1903-01-02" pattern="\d{4}-\d{2}-\d{2}" required>
 						</td>
 					</tr>
 					<tr>
