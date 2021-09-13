@@ -5,69 +5,115 @@
 <head>
 	<meta charset="UTF-8">
 	<title>등록</title>
+	<%-- BootStrap --%>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 	<style>
-		html {
-			text-align: center;
-		}
-		form {
-			margin: auto;
-		}
-		table {
-			margin: auto;
+		html,body {
+			height: 100%;
 		}
 	</style>
 </head>
 <body>
-	<form name="join_form" action="<c:url value="/join" />" method="post" onsubmit="return check()">
-		<table>
-			<tr>
-				<td><label for="name">이름</label></td>
-				<td colspan="2"><input type="text" name="name" id="name" size="27" required></td>
-			</tr>
-			<tr>
-				<td><label for="uid">ID</label></td>
-				<td><input type="text" name="id" id="uid" size="17" minlength="5" maxlength="11" required></td>
-				<td><input type="button" name="idCheck" id="idCheckBtn" value="아이디 확인"></td>
-			</tr>
-			<tr>
-				<td><label for="password">비밀번호</label></td>
-				<td colspan="2"><input type="password" name="password" id="password" size="27"
-									   minlength="8" maxlength="25" required></td>
-			</tr>
-			<tr>
-				<td><label for="repassword">비밀번호 확인</label></td>
-				<td colspan="2"><input type="password" name="password" id="repassword" size="27"
-									   minlength="8" maxlength="25" required></td>
-			</tr>
-			<tr>
-				<td><label for="birth">생일</label></td>
-				<td colspan="2"><input type="date" name="birth" id="birth" size="27" required></td>
-			</tr>
-			<tr>
-				<td><label for="code">우편번호</label></td>
-				<td><input type="text" name="postcode" id="code" size="7" readonly></td>
-				<td><input type="button" value="우편번호 찾기" onclick="findAddr()"></td>
-			</tr>
-			<tr>
-				<td><label for="addr">주소</label></td>
-				<td colspan="2"><input type="text" name="address" id="addr" size="27" readonly></td>
-			</tr>
-			<tr>
-				<td><label for="deaddress">상세 주소</label></td>
-				<td colspan="2"><input type="text" size="27" name="deaddress" id="deaddress"></td>
-			</tr>
-			<tr>
-				<td><label>계정 유형</label></td>
-				<td colspan="2">
-					<label><input type="radio" value="A" name="type" id="A" required>선수</label>
-					<label><input type="radio" value="S" name="type" id="S">감독</label>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align: center;"><button type="submit">등록하기</button></td>
-			<tr>
-		</table>		
-	</form>
+	<div class="container h-100">
+		<div class="d-flex justify-content-center align-items-center h-100">
+			<form name="join_form" action="<c:url value="/join" />" method="post" onsubmit="return check()">
+				<table class="table table-borderless">
+					<tr>
+						<td>
+							<label for="name" class="form-label">이름</label>
+						</td>
+						<td>
+							<input type="text" name="name" id="name" class="form-control" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="uid" class="form-label">ID</label>
+						</td>
+						<td>
+							<div class="input-group">
+								<input type="text" name="id" id="uid" class="form-control" minlength="5" maxlength="11" required>
+								<input type="button" name="idCheck" id="idCheckBtn" class="btn btn-warning" value="아이디 확인">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="password" class="form-label">비밀번호</label>
+						</td>
+						<td>
+							<input type="password" name="password" id="password" class="form-control"
+								   minlength="8" maxlength="25" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="repassword" class="form-label">비밀번호 확인</label>
+
+						</td>
+						<td>
+							<input type="password" name="password" id="repassword" class="form-control"
+								   minlength="8" maxlength="25" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="birth" class="form-label">생일</label>
+						</td>
+						<td>
+							<input type="date" name="birth" id="birth" class="form-control" required>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="code">우편번호</label>
+						</td>
+						<td>
+							<div class="input-group">
+								<input type="text" name="postcode" id="code" class="form-control" readonly>
+								<input type="button" value="우편번호 찾기" class="btn btn-primary" onclick="findAddr()">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="addr" class="form-label">주소</label>
+						</td>
+						<td>
+							<input type="text" name="address" id="addr" class="form-control" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="deaddress" class="form-label">상세 주소</label>
+						</td>
+						<td>
+							<input type="text" size="27" name="deaddress" id="deaddress" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="form-label">계정 유형</label>
+						</td>
+						<td>
+							<div class="d-flex justify-content-evenly">
+								<label><input type="radio" value="A" name="type" id="A" class="form-check-input" required>선수</label>
+								<label><input type="radio" value="S" name="type" id="S" class="form-check-input">감독</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-primary w-100" type="submit">등록하기</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
@@ -155,6 +201,7 @@
 				else if(data === 0) {
 					alert("사용 가능한 아이디입니다.");
 					idflag = true;
+					document.getElementById("idCheckBtn").className = 'btn btn-success';
 				}
 			}, error : function () {
 				console.log("err");

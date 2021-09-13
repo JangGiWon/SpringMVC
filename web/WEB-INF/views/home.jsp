@@ -3,163 +3,211 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>home</title>
-<style>
-	html {
-		text-align: center;
-	}
-	table {
-		margin: auto;
-		border: 1px solid;
-		border-collapse: collapse;
-	}
-	th, td {
-		border: 1px solid;
-	}
-</style>
-<script>
-	<c:if test="${msg ne null}">
-		alert('<c:out value="${msg}"/>');
-	</c:if>
-</script>
+	<meta charset="UTF-8">
+	<title>home</title>
+	<%-- BootStrap --%>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<style>
+		html, body {
+			height: 100%;
+		}
+		html {
+			text-align: center;
+		}
+	</style>
+	<script>
+		<c:if test="${msg ne null}">
+			alert('<c:out value="${msg}"/>');
+		</c:if>
+	</script>
 </head>
-<body>
-	<c:choose> 
+<body class="pt-3">
+	<c:choose>
 		<c:when test="${sessionScope.userName eq null}">
-			<a href="<c:url value="/loginForm" />">로그인</a>
-			<a href="<c:url value="/joinForm" />">등록하기</a>
+			<a class="btn btn-primary" href="<c:url value="/loginForm" />">로그인</a>
+			<a class="btn btn-success" href="<c:url value="/joinForm" />">등록하기</a>
 		</c:when>
 		<c:when test="${sessionScope.userName ne null}">
 			<c:choose>
 				<c:when test="${empty memberList}">
 					<c:choose>
 						<c:when test="${empty searchList}">
-							<div>
-								<h3>안녕하세요 ${sessionScope.userName}님</h3>
-							</div>
-							<div>
-								<a href ="<c:url value="/logout" />">로그아웃</a>
-								<a href="<c:url value="/joinForm" />">등록하기</a>
-								<a href ="<c:url value="/list" />">조회하기</a>
-							</div>
-							<div>
-								<form action="<c:url value="/search" />" method="post" onsubmit="return searchCheck()">
-									<div>
-										<input type="text" name="searchKey" id="key" size="11" value="${keyword}">
-										<select name="category" id="category" required>
-											<option value="">검색 기준</option>
-											<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
-											<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
-										</select>
-										<select name="searchType" id="searchType" required>
-											<option value="">결과 기준</option>
-											<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
-											<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
-										</select>
-										<button type="submit">검색</button>
+							<div class="container mb-3">
+								<div class="row">
+									<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
+								</div>
+								<div class="row d-flex justify-content-center">
+									<div class="col-auto">
+										<a class="btn btn-danger" href ="<c:url value="/logout" />">로그아웃</a>
 									</div>
-								</form>
+									<div class="col-auto">
+										<a class="btn btn-success" href="<c:url value="/joinForm" />">등록하기</a>
+									</div>
+									<div class="col-auto">
+										<a class="btn btn-info" href ="<c:url value="/list" />">조회하기</a>
+									</div>
+								</div>
 							</div>
+							<div class="container-fluid mb-3">
+									<form action="<c:url value="/search" />" method="post" onsubmit="return searchCheck()">
+										<div class="row d-flex justify-content-center">
+											<div class="col-2 p-1">
+												<input type="text" name="searchKey" id="key" value="${keyword}" class="form-control" aria-label="검색어 입력">
+											</div>
+											<div class="col-auto p-1">
+												<select name="category" id="category" class="form-select" aria-label="검색 기준" required>
+													<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
+													<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
+												</select>
+											</div>
+											<div class="col-auto p-1">
+												<select name="searchType" id="searchType" class="form-select" aria-label="결과 기준" required>
+													<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
+													<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
+												</select>
+											</div>
+											<div class="col-auto p-1">
+												<button type="submit" class="btn btn-primary">검색</button>
+											</div>
+										</div>
+									</form>
+								</div>
 						</c:when>
 						<c:when test="${not empty searchList}">
-							<div>
-								<h3>안녕하세요 ${sessionScope.userName}님</h3>
+							<div class="container mb-3">
+								<div class="row">
+									<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
+								</div>
+								<div class="row d-flex justify-content-center">
+									<div class="col-auto">
+										<a class="btn btn-danger" href ="<c:url value="/logout" />">로그아웃</a>
+									</div>
+									<div class="col-auto">
+										<a class="btn btn-success" href="<c:url value="/joinForm" />">등록하기</a>
+									</div>
+									<div class="col-auto">
+										<a class="btn btn-info" href ="<c:url value="/list" />">조회하기</a>
+									</div>
+								</div>
 							</div>
-							<div>
-								<a href ="<c:url value="/logout" />">로그아웃</a>
-								<a href="<c:url value="/joinForm" />">등록하기</a>
-								<a href ="<c:url value="/list" />">조회하기</a>
-							</div>
-							<div>
+							<div class="container-fluid mb-3">
 								<form action="<c:url value="/search" />" method="post" onsubmit="return searchCheck()">
-									<div>
-										<input type="text" name="searchKey" id="key" size="11" value="${keyword}">
-										<select name="category" id="category" required>
-											<option value="">검색 기준</option>
-											<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
-											<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
-										</select>
-										<select name="searchType" id="searchType" required>
-											<option value="">결과 기준</option>
-											<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
-											<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
-										</select>
-										<button type="submit">검색</button>
+									<div class="row d-flex justify-content-center">
+										<div class="col-2 p-1">
+											<input type="text" name="searchKey" id="key" value="${keyword}" class="form-control" aria-label="검색어 입력">
+										</div>
+										<div class="col-auto p-1">
+											<select name="category" id="category" class="form-select" aria-label="검색 기준" required>
+												<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
+												<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
+											</select>
+										</div>
+										<div class="col-auto p-1">
+											<select name="searchType" id="searchType" class="form-select" aria-label="결과 기준" required>
+												<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
+												<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
+											</select>
+										</div>
+										<div class="col-auto p-1">
+											<button type="submit" class="btn btn-primary">검색</button>
+										</div>
 									</div>
 								</form>
 							</div>
-							<div>
-								<table>
-									<tr>
-										<th>ID</th>
-										<th>이름</th>
-										<th>주소</th>
-										<th>우편번호</th>
-										<th>계정 유형</th>
-										<th>생일</th>
-									</tr>
-									<c:forEach var="list" items="${searchList}">
+							<div class="container">
+								<table class="table">
+									<thead>
 										<tr>
-											<td>${list.id}</td>
-											<td>${list.name}</td>
-											<td>${list.address}</td>
-											<td>${list.postCode}</td>
-											<c:choose>
-												<c:when test="${list.type eq 'A'}">
-													<td>선수</td>
-												</c:when>
-												<c:when test="${list.type eq 'S'}">
-													<td>감독</td>
-												</c:when>
-											</c:choose>
-											<td>${list.birth}</td>
+											<th>ID</th>
+											<th>이름</th>
+											<th>주소</th>
+											<th>우편번호</th>
+											<th>계정 유형</th>
+											<th>생일</th>
 										</tr>
-									</c:forEach>
+									</thead>
+									<tbody>
+										<c:forEach var="list" items="${searchList}">
+											<tr>
+												<td>${list.id}</td>
+												<td>${list.name}</td>
+												<td>${list.address}</td>
+												<td>${list.postCode}</td>
+												<c:choose>
+													<c:when test="${list.type eq 'A'}">
+														<td>선수</td>
+													</c:when>
+													<c:when test="${list.type eq 'S'}">
+														<td>감독</td>
+													</c:when>
+												</c:choose>
+												<td>${list.birth}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
 								</table>
 							</div>
 						</c:when>
 					</c:choose>
 				</c:when>
 				<c:when test="${not empty memberList}">
-					<div>
-						<h3>안녕하세요 ${sessionScope.userName}님</h3>
+					<div class="container mb-3">
+						<div class="row">
+							<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
+						</div>
+						<div class="row d-flex justify-content-center">
+							<div class="col-auto">
+								<a class="btn btn-danger" href ="<c:url value="/logout" />">로그아웃</a>
+							</div>
+							<div class="col-auto">
+								<a class="btn btn-success" href="<c:url value="/joinForm" />">등록하기</a>
+							</div>
+							<div class="col-auto">
+								<a class="btn btn-info" href ="<c:url value="/list" />">조회하기</a>
+							</div>
+						</div>
 					</div>
-					<div>
-						<a href ="<c:url value="/logout" />">로그아웃</a>
-						<a href="<c:url value="/joinForm" />">등록하기</a>
-						<a href ="<c:url value="/list" />">조회하기</a>
-					</div>
-					<div>
+					<div class="container-fluid mb-3">
 						<form action="<c:url value="/search" />" method="post" onsubmit="return searchCheck()">
-							<div>
-								<input type="text" name="searchKey" id="key" size="11" value="${keyword}">
-								<select name="category" id="category" required>
-									<option value="">검색 기준</option>
-									<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
-									<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
-								</select>
-								<select name="searchType" id="searchType" required>
-									<option value="">결과 기준</option>
-									<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
-									<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
-								</select>
-								<button type="submit">검색</button>
+							<div class="row d-flex justify-content-center">
+								<div class="col-2 p-1">
+									<input type="text" name="searchKey" id="key" value="${keyword}" class="form-control" aria-label="검색어 입력">
+								</div>
+								<div class="col-auto p-1">
+									<select name="category" id="category" class="form-select" aria-label="검색 기준" required>
+										<option value="name" <c:if test="${category eq 'name'}">selected</c:if>>이름</option>
+										<option value="id" <c:if test="${category eq 'id'}">selected</c:if>>아이디</option>
+									</select>
+								</div>
+								<div class="col-auto p-1">
+									<select name="searchType" id="searchType" class="form-select" aria-label="결과 기준" required>
+										<option value="same" <c:if test="${searchType eq 'same'}">selected</c:if>>일치</option>
+										<option value="like" <c:if test="${searchType eq 'like'}">selected</c:if>>포함</option>
+									</select>
+								</div>
+								<div class="col-auto p-1">
+									<button type="submit" class="btn btn-primary">검색</button>
+								</div>
 							</div>
 						</form>
 					</div>
-					<div>
-						<table>
+					<div class="container">
+						<table class="table">
+							<thead>
 							<tr>
 								<th>ID</th>
 								<th>이름</th>
 							</tr>
-							<c:forEach var="list" items="${memberList}">
-								<tr>
-									<td>${list.id}</td>
-									<td>${list.name}</td>
-								</tr>
-							</c:forEach>
+							</thead>
+							<tbody>
+								<c:forEach var="list" items="${memberList}">
+									<tr>
+										<td>${list.id}</td>
+										<td>${list.name}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 						</table>
 					</div>
 				</c:when>

@@ -47,10 +47,10 @@ public class userDTO {
 	}
 
 	// to search constructor
-	public userDTO(String name, String id) {
+	public userDTO(String id, String name) {
 		super();
-		this.name = name;
 		this.id = id;
+		this.name = name;
 	}
 
 	// to search constructor
