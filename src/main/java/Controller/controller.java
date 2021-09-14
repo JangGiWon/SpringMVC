@@ -21,6 +21,11 @@ public class controller {
 	@Autowired
 	public controller(serviceImpl service) { this.service = service; }
 
+	// when arriving
+	@RequestMapping("/")
+	public String arrive() { return "home"; }
+
+	// 홈 페이지 이동
 	@RequestMapping("/home")
 	public String home() { return "home"; }
 
