@@ -14,7 +14,7 @@
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
 		<div class="container-fluid justify-content-start">
-			<a class="navbar-brand" href="">Navbar</a>
+			<a class="navbar-brand" href="">Jang</a>
 			<ul class="navbar-nav me-auto mb-0">
 				<li class="nav-item">
 					<a class="nav-link active" href="<c:url value="/home" />">Home</a>
