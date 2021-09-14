@@ -27,8 +27,10 @@
 	</nav>
 	<c:choose>
 		<c:when test="${sessionScope.userName eq null}">
-			<a class="btn btn-primary" href="<c:url value="/loginForm" />">로그인</a>
-			<a class="btn btn-success" href="<c:url value="/joinForm" />">등록하기</a>
+			<div class="d-flex justify-content-center">
+				<a class="btn btn-primary m-1" href="<c:url value="/loginForm" />">로그인</a>
+				<a class="btn btn-success m-1" href="<c:url value="/joinForm" />">등록하기</a>
+			</div>
 		</c:when>
 		<c:when test="${sessionScope.userName ne null}">
 			<c:choose>
