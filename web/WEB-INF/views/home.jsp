@@ -8,21 +8,23 @@
 	<%-- BootStrap --%>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-	<style>
-		html, body {
-			height: 100%;
-		}
-		html {
-			text-align: center;
-		}
-	</style>
 	<script>
 		<c:if test="${msg ne null}">
 			alert('<c:out value="${msg}"/>');
 		</c:if>
 	</script>
 </head>
-<body class="pt-3">
+<body>
+	<nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+		<div class="container-fluid justify-content-start">
+			<a class="navbar-brand" href="">Navbar</a>
+			<ul class="navbar-nav me-auto mb-0">
+				<li class="nav-item">
+					<a class="nav-link active" href="<c:url value="/home" />">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 	<c:choose>
 		<c:when test="${sessionScope.userName eq null}">
 			<a class="btn btn-primary" href="<c:url value="/loginForm" />">로그인</a>
@@ -34,7 +36,7 @@
 					<c:choose>
 						<c:when test="${empty searchList}">
 							<div class="container mb-3">
-								<div class="row">
+								<div class="row text-center">
 									<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
 								</div>
 								<div class="row d-flex justify-content-center">
@@ -76,7 +78,7 @@
 						</c:when>
 						<c:when test="${not empty searchList}">
 							<div class="container mb-3">
-								<div class="row">
+								<div class="row text-center">
 									<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
 								</div>
 								<div class="row d-flex justify-content-center">
@@ -115,7 +117,7 @@
 									</div>
 								</form>
 							</div>
-							<div class="container">
+							<div class="container text-center">
 								<table class="table">
 									<thead>
 										<tr>
@@ -153,7 +155,7 @@
 				</c:when>
 				<c:when test="${not empty memberList}">
 					<div class="container mb-3">
-						<div class="row">
+						<div class="row text-center">
 							<h3 class="col">안녕하세요 ${sessionScope.userName}님</h3>
 						</div>
 						<div class="row d-flex justify-content-center">
@@ -192,7 +194,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="container">
+					<div class="container text-center">
 						<table class="table">
 							<thead>
 							<tr>

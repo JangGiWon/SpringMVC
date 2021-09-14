@@ -10,14 +10,19 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 	<%-- jquery	--%>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-	<style>
-		html,body {
-			height: 100%;
-		}
-	</style>
 </head>
 <body>
-	<div class="container h-100">
+	<nav class="navbar navbar-expand navbar-dark bg-dark mb-3">
+		<div class="container-fluid justify-content-start">
+			<a class="navbar-brand" href="">Navbar</a>
+			<ul class="navbar-nav me-auto mb-0">
+				<li class="nav-item">
+					<a class="nav-link active" href="<c:url value="/home" />">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<form name="join_form" action="<c:url value="/join" />" method="post" onsubmit="return check()">
 				<table class="table table-borderless">

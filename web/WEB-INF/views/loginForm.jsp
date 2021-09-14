@@ -7,12 +7,12 @@
 	<%-- BootStrap --%>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<title>로그인</title>
 	<style>
 		html, body {
 			height: 100%;
 		}
 	</style>
-	<title>로그인</title>
 	<script>
 		<c:if test="${msg ne null}">
 			alert('<c:out value="${msg}"/>');
@@ -20,7 +20,17 @@
 	</script>
 </head>
 <body>
-	<div class="container h-100">
+	<nav class="navbar navbar-expand navbar-dark bg-dark">
+		<div class="container-fluid justify-content-start">
+			<a class="navbar-brand" href="">Navbar</a>
+			<ul class="navbar-nav me-auto mb-0">
+				<li class="nav-item">
+					<a class="nav-link active" href="<c:url value="/home" />">Home</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container h-75">
 		<div class="d-flex justify-content-center align-items-center h-100">
 			<div class="card w-25">
 				<form class="card-body" action="<c:url value="/login" />" method="post">
